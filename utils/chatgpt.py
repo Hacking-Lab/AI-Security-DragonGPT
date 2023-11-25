@@ -9,7 +9,10 @@ class OpenAIHandler:
         self.proxy = proxy
 
     def do_threat_modeling(self, sentence):
-        data = {'promptText': sentence}
+        data = {
+            'systemContent': ["Generate Threats and their Preventive Measures"],
+            'promptText': [sentence]
+        }
         try:
             response = requests.post(self.proxy, headers=headers, json=data)
             response.raise_for_status()
